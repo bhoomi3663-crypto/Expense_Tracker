@@ -1,0 +1,22 @@
+{
+  "expense": [
+    {
+      "amount": "200",
+      "description": "Movie",
+      "date": "21 Jan 2026",
+      "category": "Entertainment"
+    },
+    {
+      "amount": "1400",
+      "description": "Grocery Shopping",
+      "date": "29 Oct 2026",
+      "category": "Grocery"
+    },
+    {
+      "amount": "750",
+      "description": "Cloth Shopping",
+      "date": "04 Nov 2026",
+      "category": "Shopping"
+    }
+  ]
+}
