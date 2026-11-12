@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Button from "../Button/Button";
 import { useNavigate } from "react-router-dom";
 import "./LoginForm.css";
 import { toast } from "react-toastify";
+import { UserContext } from "../../Context/UserContext";
 
 function LoginForm() {
   const [error, setError] = useState();
+  const { updateUser } = useContext(UserContext);
   const navigate = useNavigate();
   const [loginData, setLoginData] = useState({
     uname: "",
@@ -25,10 +27,11 @@ function LoginForm() {
       toast.error("Please enter Username");
       return;
     }
-    localStorage.setItem("LoginUser", JSON.stringify(loginData));
+    updateUser(loginData);
     toast.success("Login Successfully");
     navigate("/home");
   };
+
   const handleblur = (e) => {
     const { name, value } = e.target;
     let message = "";
@@ -42,6 +45,7 @@ function LoginForm() {
       [name]: message,
     });
   };
+
   return (
     <>
       <div className="loginBackground">

@@ -1,0 +1,67 @@
+.expense-card {
+  width: 100%;
+  max-width: 350px;
+  background-color: #ffffff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border-left: 5px solid #4a90e2;
+  margin: 220px 500px;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.card-header h3 {
+  font-size: 20px;
+  color: #333333;
+}
+
+.category {
+  background-color: #e3f2fd;
+  color: #1976d2;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.card-amount {
+  font-size: 28px;
+  font-weight: bold;
+  color: #2e7d32;
+  margin-bottom: 20px;
+}
+
+.card-details {
+  border-top: 1px solid #eeeeee;
+  padding-top: 15px;
+}
+
+.detail-item {
+  margin-bottom: 15px;
+}
+
+.detail-item span {
+  font-size: 13px;
+  color: #888888;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.detail-item p {
+  font-size: 15px;
+  color: #333333;
+  font-weight: 500;
+}
+
+@media (max-width: 480px) {
+  .expense-card {
+    max-width: 100%;
+    margin: 15px auto;
+  }
+}

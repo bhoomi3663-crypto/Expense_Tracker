@@ -4,19 +4,58 @@
       "amount": "200",
       "description": "Movie",
       "date": "21 Jan 2026",
-      "category": "Entertainment"
+      "category": "Entertainment",
+      "id": "Tx9ldlG_tZw"
     },
     {
       "amount": "1400",
       "description": "Grocery Shopping",
       "date": "29 Oct 2026",
-      "category": "Grocery"
+      "category": "Grocery",
+      "id": "rNCRA-SA8s4"
     },
     {
-      "amount": "750",
-      "description": "Cloth Shopping",
-      "date": "04 Nov 2026",
+      "expenseData": {
+        "amount": "2000",
+        "description": "Go to Somanath",
+        "date": "2026-08-07",
+        "category": "Travel",
+        "id": "iuy3zmJF-nQ",
+        "expenseData": {
+          "amount": "2000",
+          "description": "Dwarka",
+          "date": "2026-08-07",
+          "category": "Travel",
+          "id": "iuy3zmJF-nQ"
+        }
+      },
+      "id": "iuy3zmJF-nQ",
+      "amount": "200",
+      "description": "Cloth shopping",
+      "date": "2026-11-03",
       "category": "Shopping"
+    },
+    {
+      "amount": "3000",
+      "description": "crackers ",
+      "date": "2026-11-05",
+      "category": "Entertainment",
+      "id": "e08VlhNLpR8"
+    },
+    {
+      "amount": "400",
+      "description": "dwarka",
+      "date": "2026-08-30",
+      "category": "Entertainment",
+      "id": "RvLfmkwzcHU"
+    },
+    {
+      "amount": "5000",
+      "description": "body checkup",
+      "date": "2026-06-21",
+      "category": "Health",
+      "id": "XSYSAw7JcoQ"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

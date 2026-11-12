@@ -2,9 +2,21 @@ import "./Home.css";
 import React, { useEffect, useState } from "react";
 import { Search, Trash2, Pencil, Eye } from "lucide-react";
 import Button from "../../Components/Button/Button";
+import { useNavigate } from "react-router-dom";
+import ConfirmModel from "../../ConfirmationModel/ConfirmationModel";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 function Home() {
   const [expenses, setExpenses] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState("");
+  const [showModel, setShowModel] = useState(false);
+  const [deleteId, setDeleteId] = useState(null);
+  const [search, setSearch] = useState("");
+  const [category, setCategory] = useState("");
+  const navigate = useNavigate();
+
   useEffect(() => {
     fetch("http://localhost:3000/expense")
       .then((response) => response.json())
@@ -15,7 +27,47 @@ function Home() {
           error,
         ),
       );
+  }, []);
+  // delete post:
+  const deleteHandlerId = (id) => {
+    axios
+      .delete(`http://localhost:3000/expense/${id}`)
+      .then(() => {
+        toast.success("Expense Deleted Successfully");
+      })
+      .catch(() => toast.error("Unable to delete Expense."))
+      .finally(() => handleDeleteClose());
+  };
+  const deleteHandler = (id) => {
+    setShowModel(true);
+    setDeleteId(id);
+  };
+  const handleDeleteClose = () => {
+    setShowModel(false);
+  };
+
+  // Edit expense list:
+  const editHandler = (id) => {
+    navigate(`/addExpense/${id}`);
+  };
+
+  // readmore of expense list:
+  const readMoreHandler = (id) => {
+    navigate(`/readMoreCard/${id}`);
+  };
+  // serch function:
+  const filteredExpenses = expenses.filter((expense) => {
+    const matchesDescription = expense.description
+      .toLowerCase()
+      .includes(search.toLowerCase());
+
+    const matchesCategory =
+      category === "" ||
+      expense.category.toLowerCase() === category.toLowerCase();
+
+    return matchesDescription && matchesCategory;
   });
+  // category type function:
   return (
     <>
       <div className="expense-container">
@@ -28,10 +80,19 @@ function Home() {
         <div className="expense-filters">
           <div className="search-box">
             <Search size={20} />
-            <input type="text" placeholder="Search expenses..." />
+            <input
+              type="text"
+              placeholder="Search expenses..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
           </div>
 
-          <select className="category-select">
+          <select
+            className="category-select"
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+          >
             <option value="">All Categories</option>
             <option>Food</option>
             <option>Travel</option>
@@ -58,7 +119,7 @@ function Home() {
             </thead>
 
             <tbody>
-              {expenses.map((expense, index) => (
+              {filteredExpenses.map((expense) => (
                 <tr key={expense.id}>
                   <td>{expense.amount}</td>
                   <td>{expense.description}</td>
@@ -67,13 +128,25 @@ function Home() {
                     <span className="category food">{expense.category}</span>
                   </td>
                   <td>
-                    <Button className="delete-btn" label="Delete" />
+                    <Button
+                      className="delete-btn"
+                      label="Delete"
+                      onClick={() => deleteHandler(expense.id)}
+                    />
                   </td>
                   <td>
-                    <Button className="edit-btn" label="Edit" />
+                    <Button
+                      className="edit-btn"
+                      label="Edit"
+                      onClick={() => editHandler(expense.id)}
+                    />
                   </td>
                   <td>
-                    <Button className="read-more-btn" label="Read More" />
+                    <Button
+                      className="read-more-btn"
+                      label="Read More"
+                      onClick={() => readMoreHandler(expense.id)}
+                    />
                   </td>
                 </tr>
               ))}
@@ -81,6 +154,14 @@ function Home() {
           </table>
         </div>
       </div>
+      {showModel && (
+        <ConfirmModel
+          title="Are Want To Delete this expense?"
+          onClose={handleDeleteClose}
+          onSuccess={() => deleteHandlerId(deleteId)}
+          name={"Delete"}
+        />
+      )}
     </>
   );
 }

@@ -1,10 +1,13 @@
-import React from "react";
+import { useContext } from "react";
 import "./Navbar.css";
 import { Wallet, Home, PlusCircle, Receipt } from "lucide-react";
 import Button from "../Button/Button";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import { UserContext } from "../../Context/UserContext";
 
 const Navbar = () => {
+  const { user } = useContext(UserContext);
+
   return (
     <nav className="navbar">
       <div className="navbar-logo">
@@ -28,6 +31,9 @@ const Navbar = () => {
           Expense Items
         </NavLink>
       </div>
+      <NavLink to="/userProfileEdit" className="loginuser-name">
+        Hello, {user?.uname || "User"} !
+      </NavLink>
       <Button className="logout-button" label="Logout" />
     </nav>
   );

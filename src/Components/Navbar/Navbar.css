@@ -57,6 +57,27 @@
   color: #4f46e5;
 }
 
+.loginuser-name {
+  background-color: #e0be17;
+  color: black;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  height: 40px;
+  padding: 12px;
+  text-decoration: none;
+}
+
+.loginuser-name:hover {
+  color: #e0be17;
+  background-color: black;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  height: 40px;
+  padding: 12px;
+}
+
 .logout-button {
   background-color: #e0be17;
   color: black;
