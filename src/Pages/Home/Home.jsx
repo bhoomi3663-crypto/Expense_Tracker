@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 import ConfirmModel from "../../ConfirmationModel/ConfirmationModel";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useContext } from "react";
+import ThemeContext from "../../Context/ThemeContext";
 
 function Home() {
   const [expenses, setExpenses] = useState([]);
@@ -16,6 +18,7 @@ function Home() {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("");
   const navigate = useNavigate();
+  const { mode } = useContext(ThemeContext);
 
   useEffect(() => {
     fetch("http://localhost:3000/expense")
@@ -70,98 +73,100 @@ function Home() {
   // category type function:
   return (
     <>
-      <div className="expense-container">
-        <div className="expense-header">
-          <h2>Expense List</h2>
-          <p>Manage and track all your expenses</p>
-        </div>
-
-        {/* Search and Category */}
-        <div className="expense-filters">
-          <div className="search-box">
-            <Search size={20} />
-            <input
-              type="text"
-              placeholder="Search expenses..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
+      <div className={`background ${mode}`}>
+        <div className={`expense-container ${mode}`}>
+          <div className="expense-header">
+            <h2>Expense List</h2>
+            <p>Manage and track all your expenses</p>
           </div>
 
-          <select
-            className="category-select"
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-          >
-            <option value="">All Categories</option>
-            <option>Food</option>
-            <option>Travel</option>
-            <option>Shopping</option>
-            <option>Entertainment</option>
-            <option>Health</option>
-            <option>Grocery</option>
-          </select>
-        </div>
+          {/* Search and Category */}
+          <div className="expense-filters">
+            <div className="search-box">
+              <Search size={20} />
+              <input
+                type="text"
+                placeholder="Search expenses..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+              />
+            </div>
 
-        {/* Expense Table */}
-        <div className="table-wrapper">
-          <table className="expense-table">
-            <thead>
-              <tr>
-                <th>Amount</th>
-                <th>Description</th>
-                <th>Date</th>
-                <th>Category</th>
-                <th>Delete</th>
-                <th>Edit</th>
-                <th>Read More</th>
-              </tr>
-            </thead>
+            <select
+              className="category-select"
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+            >
+              <option value="">All Categories</option>
+              <option>Food</option>
+              <option>Travel</option>
+              <option>Shopping</option>
+              <option>Entertainment</option>
+              <option>Health</option>
+              <option>Grocery</option>
+            </select>
+          </div>
 
-            <tbody>
-              {filteredExpenses.map((expense) => (
-                <tr key={expense.id}>
-                  <td>{expense.amount}</td>
-                  <td>{expense.description}</td>
-                  <td>{expense.date}</td>
-                  <td>
-                    <span className="category food">{expense.category}</span>
-                  </td>
-                  <td>
-                    <Button
-                      className="delete-btn"
-                      label="Delete"
-                      onClick={() => deleteHandler(expense.id)}
-                    />
-                  </td>
-                  <td>
-                    <Button
-                      className="edit-btn"
-                      label="Edit"
-                      onClick={() => editHandler(expense.id)}
-                    />
-                  </td>
-                  <td>
-                    <Button
-                      className="read-more-btn"
-                      label="Read More"
-                      onClick={() => readMoreHandler(expense.id)}
-                    />
-                  </td>
+          {/* Expense Table */}
+          <div className="table-wrapper">
+            <table className="expense-table">
+              <thead>
+                <tr>
+                  <th>Amount</th>
+                  <th>Description</th>
+                  <th>Date</th>
+                  <th>Category</th>
+                  <th>Delete</th>
+                  <th>Edit</th>
+                  <th>Read More</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+
+              <tbody>
+                {filteredExpenses.map((expense) => (
+                  <tr key={expense.id}>
+                    <td>{expense.amount}</td>
+                    <td>{expense.description}</td>
+                    <td>{expense.date}</td>
+                    <td>
+                      <span className="category food">{expense.category}</span>
+                    </td>
+                    <td>
+                      <Button
+                        className="delete-btn"
+                        label="Delete"
+                        onClick={() => deleteHandler(expense.id)}
+                      />
+                    </td>
+                    <td>
+                      <Button
+                        className="edit-btn"
+                        label="Edit"
+                        onClick={() => editHandler(expense.id)}
+                      />
+                    </td>
+                    <td>
+                      <Button
+                        className="read-more-btn"
+                        label="Read More"
+                        onClick={() => readMoreHandler(expense.id)}
+                      />
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
+        {showModel && (
+          <ConfirmModel
+            title="Are Want To Delete this expense?"
+            onClose={handleDeleteClose}
+            onSuccess={() => deleteHandlerId(deleteId)}
+            name={"Delete"}
+          />
+        )}
       </div>
-      {showModel && (
-        <ConfirmModel
-          title="Are Want To Delete this expense?"
-          onClose={handleDeleteClose}
-          onSuccess={() => deleteHandlerId(deleteId)}
-          name={"Delete"}
-        />
-      )}
     </>
   );
 }

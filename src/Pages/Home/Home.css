@@ -4,11 +4,25 @@
   box-sizing: border-box;
 }
 
+.background.dark {
+  background-color: #070707;
+  padding: 50px;
+}
 .expense-container {
   width: 90%;
-  margin: 40px auto;
   padding: 25px;
+  margin: auto;
   background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+.expense-container.dark {
+  width: 90%;
+  padding: 25px;
+  margin: auto;
+
+  background: #070707;
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
 }

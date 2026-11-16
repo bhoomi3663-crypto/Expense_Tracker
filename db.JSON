@@ -3,14 +3,14 @@
     {
       "amount": "200",
       "description": "Movie",
-      "date": "21 Jan 2026",
+      "date": "2026-01-21",
       "category": "Entertainment",
       "id": "Tx9ldlG_tZw"
     },
     {
       "amount": "1400",
       "description": "Grocery Shopping",
-      "date": "29 Oct 2026",
+      "date": "2026-09-16",
       "category": "Grocery",
       "id": "rNCRA-SA8s4"
     },

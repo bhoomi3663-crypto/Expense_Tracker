@@ -57,21 +57,50 @@
   color: #4f46e5;
 }
 
-.loginuser-name {
-  background-color: #e0be17;
+.theme-profile-btn {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 35px;
+  padding: 10px;
+}
+
+.cloud-icon {
+  cursor: pointer;
+  margin-top: 12px;
+  color: #eeeeef;
+}
+
+.username-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-icon {
+  color: pink;
+  padding: 5px;
+}
+
+.user-icon:hover {
   color: black;
+  padding: 5px;
+}
+
+.loginuser-name {
+  color: pink;
+  font-weight: 700;
   border: none;
   border-radius: 8px;
   font-size: 18px;
-  height: 40px;
+  height: 45px;
   padding: 12px;
   text-decoration: none;
 }
 
 .loginuser-name:hover {
-  color: #e0be17;
-  background-color: black;
+  color: black;
   border: none;
+  font-weight: 700;
   border-radius: 8px;
   font-size: 18px;
   height: 40px;

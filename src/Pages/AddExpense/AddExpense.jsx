@@ -4,6 +4,9 @@ import "./AddExpense.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useContext } from "react";
+import ThemeContext from "../../Context/ThemeContext";
+import { UserContext } from "../../Context/UserContext";
 
 function AddExpense() {
   const [isSubmitting, setIsSubmitting] = useState(true);
@@ -15,6 +18,9 @@ function AddExpense() {
     date: "",
     category: "",
   });
+  const { user } = useContext(UserContext);
+  const { mode } = useContext(ThemeContext);
+
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -80,67 +86,69 @@ function AddExpense() {
   };
   return (
     <>
-      <div className="expense-back">
-        <h2>Add New Expense</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label>Amount</label>
-            <input
-              type="number"
-              name="amount"
-              id="amount"
-              placeholder="Enter amount"
-              value={expenseData.amount}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
+      <div className={`background ${mode}`}>
+        <div className={`expense-back ${mode}`}>
+          <h2>Add New Expense</h2>
+          <form onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label>Amount</label>
+              <input
+                type="number"
+                name="amount"
+                id="amount"
+                placeholder="Enter amount"
+                value={expenseData.amount}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
 
-          <div className="form-group">
-            <label>Description</label>
-            <input
-              type="text"
-              name="description"
-              id="description"
-              placeholder="Enter description"
-              required
-              autoComplete="off"
-              value={expenseData.description}
-              onChange={handleInputChange}
-            />
-          </div>
+            <div className="form-group">
+              <label>Description</label>
+              <input
+                type="text"
+                name="description"
+                id="description"
+                placeholder="Enter description"
+                required
+                autoComplete="off"
+                value={expenseData.description}
+                onChange={handleInputChange}
+              />
+            </div>
 
-          <div className="form-group">
-            <label>Date</label>
-            <input
-              type="date"
-              name="date"
-              id="date"
-              required
-              value={expenseData.date}
-              max={today}
-              onChange={handleformatDate}
-            />
-          </div>
+            <div className="form-group">
+              <label>Date</label>
+              <input
+                type="date"
+                name="date"
+                id="date"
+                required
+                value={expenseData.date}
+                max={today}
+                onChange={handleformatDate}
+              />
+            </div>
 
-          <div className="form-group">
-            <label>Category</label>
-            <select
-              value={expenseData.category}
-              name="category"
-              onChange={handleInputChange}
-            >
-              <option>Select Category</option>
-              <option>Food</option>
-              <option>Travel</option>
-              <option>Shopping</option>
-              <option>Entertainment</option>
-              <option>Health</option>
-              <option>Grocery</option>
-            </select>
-          </div>
-          <Button label="Submit Expense" className="submit-btn" />
-        </form>
+            <div className="form-group">
+              <label>Category</label>
+              <select
+                value={expenseData.category}
+                name="category"
+                onChange={handleInputChange}
+              >
+                <option>Select Category</option>
+                <option>Food</option>
+                <option>Travel</option>
+                <option>Shopping</option>
+                <option>Entertainment</option>
+                <option>Health</option>
+                <option>Grocery</option>
+              </select>
+            </div>
+            <Button label="Submit Expense" className="submit-btn" />
+          </form>
+        </div>
       </div>
     </>
   );
