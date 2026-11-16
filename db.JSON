@@ -1,60 +1,53 @@
 {
   "expense": [
     {
-      "amount": "200",
-      "description": "Movie",
-      "date": "2026-01-21",
-      "category": "Entertainment",
-      "id": "Tx9ldlG_tZw"
-    },
-    {
       "amount": "1400",
       "description": "Grocery Shopping",
-      "date": "2026-09-16",
+      "date": "2026-09-17",
       "category": "Grocery",
       "id": "rNCRA-SA8s4"
     },
     {
-      "expenseData": {
-        "amount": "2000",
-        "description": "Go to Somanath",
-        "date": "2026-08-07",
-        "category": "Travel",
-        "id": "iuy3zmJF-nQ",
-        "expenseData": {
-          "amount": "2000",
-          "description": "Dwarka",
-          "date": "2026-08-07",
-          "category": "Travel",
-          "id": "iuy3zmJF-nQ"
-        }
-      },
-      "id": "iuy3zmJF-nQ",
-      "amount": "200",
-      "description": "Cloth shopping",
-      "date": "2026-11-03",
-      "category": "Shopping"
-    },
-    {
-      "amount": "3000",
-      "description": "crackers ",
-      "date": "2026-11-05",
-      "category": "Entertainment",
-      "id": "e08VlhNLpR8"
-    },
-    {
-      "amount": "400",
-      "description": "dwarka",
-      "date": "2026-08-30",
-      "category": "Entertainment",
-      "id": "RvLfmkwzcHU"
-    },
-    {
       "amount": "5000",
-      "description": "body checkup",
+      "description": "full body checkup",
       "date": "2026-06-21",
       "category": "Health",
       "id": "XSYSAw7JcoQ"
+    },
+    {
+      "0": {
+        "amount": "1400",
+        "description": "Grocery Shopping",
+        "date": "2026-09-16",
+        "category": "Grocery",
+        "id": "rNCRA-SA8s4"
+      },
+      "1": {
+        "amount": "5000",
+        "description": "body checkup",
+        "date": "2026-06-21",
+        "category": "Health",
+        "id": "XSYSAw7JcoQ"
+      },
+      "amount": "240",
+      "description": "chhole bhature",
+      "date": "2026-11-14",
+      "category": "Food",
+      "id": "y-GWxli_fTc"
+    },
+    {
+      "amount": "5000",
+      "description": "handloom",
+      "date": "2026-10-21",
+      "category": "Shopping",
+      "id": "IWJjyI6JONI"
+    },
+    {
+      "amount": "200",
+      "description": "bnkjxsw,x",
+      "date": "2026-11-11",
+      "category": "Shopping",
+      "id": "EU8_hvrb0ho"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

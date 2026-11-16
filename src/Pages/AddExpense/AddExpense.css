@@ -9,11 +9,6 @@ body {
   background-color: #f4f6f9;
 }
 
-.background.dark {
-  background-color: #070707;
-  padding: 50px;
-}
-
 .expense-back {
   background-color: #fff;
   color: #263238;

@@ -8,6 +8,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { useContext } from "react";
 import ThemeContext from "../../Context/ThemeContext";
+import { getUsers, deleteUser } from "../../Services/userServices";
 
 function Home() {
   const [expenses, setExpenses] = useState([]);
@@ -20,27 +21,55 @@ function Home() {
   const navigate = useNavigate();
   const { mode } = useContext(ThemeContext);
 
-  useEffect(() => {
-    fetch("http://localhost:3000/expense")
-      .then((response) => response.json())
-      .then((data) => setExpenses(data))
-      .catch((error) =>
-        console.error(
-          "Unable to load Expense. Check that the API server is running.",
-          error,
-        ),
-      );
-  }, []);
-  // delete post:
-  const deleteHandlerId = (id) => {
-    axios
-      .delete(`http://localhost:3000/expense/${id}`)
-      .then(() => {
-        toast.success("Expense Deleted Successfully");
-      })
-      .catch(() => toast.error("Unable to delete Expense."))
-      .finally(() => handleDeleteClose());
+  // fatch data:
+  // useEffect(() => {
+  //   fetch("http://localhost:3000/expense")
+  //     .then((response) => response.json())
+  //     .then((data) => setExpenses(data))
+  //     .catch((error) =>
+  //       console.error(
+  //         "Unable to load Expense. Check that the API server is running.",
+  //         error,
+  //       ),
+  //     );
+  // }, []);
+  const fetchUsers = async () => {
+    try {
+      const data = await getUsers();
+      setExpenses(data);
+    } catch (error) {
+      console.error("Error fetching users:", error);
+    } finally {
+      setIsLoading(false);
+    }
   };
+  useEffect(() => {
+    fetchUsers();
+  }, []);
+
+  // delete post:
+  const deleteHandlerId = async (id) => {
+    try {
+      await deleteUser(id);
+      setExpenses((currentExpenses) =>
+        currentExpenses.filter((expense) => expense.id !== id),
+      );
+      toast.success("Expense Deleted Successfully");
+    } catch {
+      toast.error("Unable to delete Expense.");
+    } finally {
+      handleDeleteClose();
+    }
+  };
+  // const deleteHandlerId = (id) => {
+  //   axios
+  //     .delete(`http://localhost:3000/expense/${id}`)
+  //     .then(() => {
+  //       toast.success("Expense Deleted Successfully");
+  //     })
+  //     .catch(() => toast.error("Unable to delete Expense."))
+  //     .finally(() => handleDeleteClose());
+  // };
   const deleteHandler = (id) => {
     setShowModel(true);
     setDeleteId(id);

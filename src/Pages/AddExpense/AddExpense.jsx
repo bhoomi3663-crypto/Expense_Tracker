@@ -7,6 +7,11 @@ import { toast } from "react-toastify";
 import { useContext } from "react";
 import ThemeContext from "../../Context/ThemeContext";
 import { UserContext } from "../../Context/UserContext";
+import {
+  createUser,
+  getUserById,
+  updateUser,
+} from "../../Services/userServices";
 
 function AddExpense() {
   const [isSubmitting, setIsSubmitting] = useState(true);
@@ -24,53 +29,96 @@ function AddExpense() {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  useEffect(() => {
-    if (id) {
-      axios
-        .get(`http://localhost:3000/expense/${id}`)
-        .then((res) => setExpenseData(res.data))
-        .catch(() =>
-          setError(
-            "Unable to load expense. Check that the API server is running.",
-          ),
-        )
-        .finally(() => setIsSubmitting(false));
-    }
-  }, [id]);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (id) {
-      axios
-        .put(`http://localhost:3000/expense/${id}`, expenseData)
-        // amount: expenseData.amount,
-        // description: expenseData.description,
-        // date: expenseData.date,
-        // category: expenseData.category,
-
-        .then((res) => setExpenseData(res.data));
-      toast.success("Expense edited successfully");
-      navigate("/home")
-        .catch(() =>
-          setError(
-            "Unable to edit expense. Check that the API server is running.",
-          ),
-        )
-        .finally(() => setIsSubmitting(false));
-    } else {
-      axios
-        .post("http://localhost:3000/expense", expenseData)
-        .then((res) => setExpenseData(res.data))
-        .catch(() =>
-          setError(
-            "Unable to load expense. Check that the API server is running.",
-          ),
-        )
-        .finally(() => setIsSubmitting(false));
-      toast.success("Expense added successfully");
-      navigate("/home");
+  // //   get data:
+  const getData = async () => {
+    try {
+      if (id) {
+        const res = await getUserById(id);
+        setExpenseData(res);
+      }
+    } catch {
+      setError("Unable to load expense. Check that the API server is running.");
+    } finally {
+      setIsSubmitting(false);
     }
   };
+  useEffect(() => {
+    getData();
+  }, [id]);
+  //   useEffect(() => {
+  //     if (id) {
+  //       axios
+  //         .get(`http://localhost:3000/expense/${id}`)
+  //         .then((res) => setExpenseData(res.data))
+  //         .catch(() =>
+  //           setError(
+  //             "Unable to load expense. Check that the API server is running.",
+  //           ),
+  //         )
+  //         .finally(() => setIsSubmitting(false));
+  //     }
+  //   }, [id])
+
+  // //   Edit data:
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (id) {
+      try {
+        await updateUser(id, expenseData);
+        toast.success("Expense edited successfullly");
+      } catch {
+        setError(
+          "Unable to edit expense. Check that the API server is running.",
+        );
+      } finally {
+        setIsSubmitting(false);
+        navigate("/home");
+      }
+    } else {
+      try {
+        await createUser(expenseData);
+      } catch {
+        setError(
+          "Unable to load expense. Check that the API server is running.",
+        );
+      } finally {
+        setIsSubmitting(false);
+        toast.success("Expense added successfully");
+        navigate("/home");
+      }
+    }
+  };
+  //   const handleSubmit = (e) => {
+  //     e.preventDefault();
+  //     if (id) {
+  //       axios
+  //         .put(`http://localhost:3000/expense/${id}`, expenseData)
+  //         // amount: expenseData.amount,
+  //         // description: expenseData.description,
+  //         // date: expenseData.date,
+  //         // category: expenseData.category,
+  //         .then((res) => setExpenseData(res.data));
+  //       toast.success("Expense edited successfully");
+  //         .catch(() =>
+  //           setError(
+  //             "Unable to edit expense. Check that the API server is running.",
+  //           ),
+  //         )
+  //         .finally(() => setIsSubmitting(false));
+  //     } else {
+  //       axios
+  //         .post("http://localhost:3000/expense", expenseData)
+  //         .then((res) => setExpenseData(res.data))
+  //         .catch(() =>
+  //           setError(
+  //             "Unable to load expense. Check that the API server is running.",
+  //           ),
+  //         )
+  //         .finally(() => setIsSubmitting(false));
+  //       toast.success("Expense added successfully");
+  //       navigate("/home");
+  //     }
+  //   };
   const handleInputChange = (e) => {
     const { name, value } = e.target; //destrucruing
     setExpenseData({ ...expenseData, [name]: value });
