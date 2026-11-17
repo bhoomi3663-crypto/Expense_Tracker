@@ -1,4 +1,4 @@
-.profile-container {
+.profile-container.light {
   min-height: 85vh;
   display: flex;
   justify-content: center;
@@ -7,10 +7,28 @@
   background: #f4f6f9;
 }
 
-.profile-card {
+.profile-container.dark {
+  min-height: 85vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 15px;
+  background: #111b20;
+}
+
+.profile-card.light {
   width: 100%;
   max-width: 450px;
   background: #ffffff;
+  padding: 35px;
+  border-radius: 15px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+}
+
+.profile-card.dark {
+  width: 100%;
+  max-width: 450px;
+  background: #1b292e;
   padding: 35px;
   border-radius: 15px;
   box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
@@ -33,6 +51,18 @@
   font-size: 30px;
 }
 
+.profile-card.dark .profile-icon {
+  width: 65px;
+  height: 65px;
+  margin: 0 auto 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background: #424448;
+  font-size: 30px;
+}
+
 .profile-header h2 {
   font-size: 25px;
   color: #222;
@@ -42,6 +72,14 @@
 .profile-header p {
   color: #777;
   font-size: 14px;
+}
+
+.profile-card.dark .profile-header h2 {
+  color: #e8efec;
+}
+
+.profile-card.dark .profile-header p {
+  color: #a7b6b7;
 }
 
 .profile-form {
@@ -62,6 +100,10 @@
   color: #333;
 }
 
+.profile-card.dark .form-group label {
+  color: #e8efec;
+}
+
 .form-group input {
   padding: 13px 15px;
   border: 1px solid #ddd;
@@ -71,15 +113,33 @@
   transition: 0.3s;
 }
 
+.profile-card.dark .form-group input {
+  background: #22343a;
+  border-color: #3b5055;
+  color: #e8efec;
+}
+
+.profile-card.dark .form-group input:focus {
+  border-color: #66c3b4;
+  box-shadow: 0 0 5px rgba(102, 195, 180, 0.25);
+}
+
 .form-group input:focus {
   border-color: #4361ee;
   box-shadow: 0 0 5px rgba(67, 97, 238, 0.2);
+}
+
+.profile-btn {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 10px;
 }
 
 .update-btn {
   padding: 14px;
   background: #4361ee;
   color: white;
+  width: 40%;
   border: none;
   border-radius: 8px;
   font-size: 16px;
@@ -90,6 +150,24 @@
 
 .update-btn:hover {
   background: #3048c5;
+  transform: translateY(-2px);
+}
+
+.cancel-btn {
+  padding: 14px;
+  width: 40%;
+  background: #b90202;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.cancel-btn:hover {
+  background: #b90202;
   transform: translateY(-2px);
 }
 

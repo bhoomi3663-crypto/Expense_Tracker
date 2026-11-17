@@ -4,9 +4,11 @@ import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { UserContext } from "../../Context/UserContext";
+import ThemeContext from "../../Context/ThemeContext";
 
 const UserProfileEdit = () => {
   const { user, updateUser } = useContext(UserContext);
+  const { mode } = useContext(ThemeContext);
 
   const [editloginData, setEditLoginData] = useState({
     uname: user.uname,
@@ -29,8 +31,8 @@ const UserProfileEdit = () => {
   };
 
   return (
-    <div className="profile-container">
-      <div className="profile-card">
+    <div className={`profile-container ${mode}`}>
+      <div className={`profile-card ${mode}`}>
         <div className="profile-header">
           <div className="profile-icon">👤</div>
           <h2>Edit Profile</h2>
@@ -73,7 +75,10 @@ const UserProfileEdit = () => {
               autoComplete="off"
             />
           </div>
-          <Button className="update-btn" label="Update Profile" />
+          <div className="profile-btn">
+            <Button className="cancel-btn" label="Cancel" />
+            <Button className="update-btn" label="Update Profile" />
+          </div>
         </form>
       </div>
     </div>
