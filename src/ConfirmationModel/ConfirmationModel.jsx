@@ -1,33 +1,33 @@
-// import Button from "../../Componants/Button/Button";
-import { useNavigate } from "react-router-dom";
 import "./ConfirmationModel.css";
 import { useContext } from "react";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogTitle from "@mui/material/DialogTitle";
+import Button from "@mui/material/Button";
+import ThemeContext from "../Context/ThemeContext";
 
 function ConfirmModel({ onClose, title, onSuccess, name }) {
-  const navigate = useNavigate();
-  // const { mode } = useContext(ModeContext);
+  const { mode } = useContext(ThemeContext);
 
-  //   const confirmcancelBtn = (e) => {
-  //     e.preventDefault();
-  //     navigate("/");
-  //   };
   return (
-    <>
-      <div className="confirm-background">
-        <div className="confirm-position">
-          <p>{title}</p>
-
-          <div className="confirm-btn">
-            <button className="confirm-cancel-btn" onClick={onClose}>
-              Cancel
-            </button>
-            <button className="confirm-logout-btn" onClick={onSuccess}>
-              {name}
-            </button>
-          </div>
-        </div>
-      </div>
-    </>
+    <Dialog
+      open
+      onClose={onClose}
+      aria-labelledby="confirmation-dialog-title"
+      className={`confirm-dialog ${mode}`}
+      maxWidth="xs"
+      fullWidth
+    >
+      <DialogTitle id="confirmation-dialog-title">{title}</DialogTitle>
+      <DialogActions>
+        <Button className="confirm-cancel" onClick={onClose} autoFocus>
+          Cancel
+        </Button>
+        <Button className="confirm-action" onClick={onSuccess}>
+          {name}
+        </Button>
+      </DialogActions>
+    </Dialog>
   );
 }
 

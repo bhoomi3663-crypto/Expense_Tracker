@@ -4,10 +4,22 @@
   box-sizing: border-box;
 }
 
-.background.dark {
-  background-color: #070707;
-  padding: 50px;
+.home-page {
+  min-height: calc(100vh - 75px);
+  padding: 40px 0;
+  transition: background-color 180ms ease, color 180ms ease;
 }
+
+.home-page.light {
+  background-color: #f4f6f9;
+  color: #263238;
+}
+
+.home-page.dark {
+  background-color: #111b20;
+  color: #e8efec;
+}
+
 .expense-container {
   width: 90%;
   padding: 25px;
@@ -21,10 +33,10 @@
   width: 90%;
   padding: 25px;
   margin: auto;
-
-  background: #070707;
+  background: #1b292e;
+  color: #e8efec;
   border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 .expense-header {
@@ -40,6 +52,14 @@
 .expense-header p {
   color: #6b7280;
   font-size: 14px;
+}
+
+.expense-container.dark .expense-header h2 {
+  color: #e8efec;
+}
+
+.expense-container.dark .expense-header p {
+  color: #a7b6b7;
 }
 
 /* Search and Category */
@@ -60,6 +80,7 @@
   border: 1px solid #d1d5db;
   border-radius: 8px;
   color: #6b7280;
+  background: #fff;
 }
 
 .search-box input {
@@ -67,6 +88,8 @@
   border: none;
   outline: none;
   font-size: 15px;
+  color: #263238;
+  background: transparent;
 }
 
 .category-select {
@@ -78,6 +101,17 @@
   font-size: 15px;
   color: #374151;
   background: white;
+}
+
+.expense-container.dark .search-box,
+.expense-container.dark .category-select {
+  border-color: #3b5055;
+  background: #22343a;
+  color: #e8efec;
+}
+
+.expense-container.dark .search-box input {
+  color: #e8efec;
 }
 
 /* Table */
@@ -97,12 +131,20 @@
   background: #f3f4f6;
 }
 
+.expense-container.dark .expense-table thead {
+  background: #24353b;
+}
+
 .expense-table th {
   padding: 16px 12px;
   text-align: left;
   color: #374151;
   font-size: 14px;
   font-weight: 600;
+}
+
+.expense-container.dark .expense-table th {
+  color: #e8efec;
 }
 
 .expense-table td {
@@ -112,8 +154,17 @@
   font-size: 14px;
 }
 
+.expense-container.dark .expense-table td {
+  border-bottom-color: #3b5055;
+  color: #c4cfce;
+}
+
 .expense-table tbody tr:hover {
   background: #f9fafb;
+}
+
+.expense-container.dark .expense-table tbody tr:hover {
+  background: #273a3f;
 }
 
 .amount {

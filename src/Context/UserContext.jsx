@@ -12,8 +12,13 @@ export function UserProvider({ children }) {
     setUser(updatedUser);
   };
 
+  const logoutUser = () => {
+    localStorage.removeItem("LoginUser");
+    setUser(null);
+  };
+
   return (
-    <UserContext.Provider value={{ user, updateUser }}>
+    <UserContext.Provider value={{ user, updateUser, logoutUser }}>
       {children}
     </UserContext.Provider>
   );

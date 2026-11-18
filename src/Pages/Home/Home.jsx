@@ -102,7 +102,7 @@ function Home() {
   // category type function:
   return (
     <>
-      <div className={`background ${mode}`}>
+      <div className={`home-page ${mode}`}>
         <div className={`expense-container ${mode}`}>
           <div className="expense-header">
             <h2>Expense List</h2>

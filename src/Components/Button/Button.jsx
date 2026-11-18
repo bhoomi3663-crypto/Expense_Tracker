@@ -4,6 +4,7 @@ function Button(props) {
   return (
     <>
       <button
+        type={props.type ?? "submit"}
         className={props.className}
         onClick={props.onClick}
         disabled={props.disabled}

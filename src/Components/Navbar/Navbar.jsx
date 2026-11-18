@@ -3,7 +3,7 @@ import "./Navbar.css";
 import { BsFillCloudSunFill } from "react-icons/bs";
 import { BsFillMoonStarsFill } from "react-icons/bs";
 import { CgProfile } from "react-icons/cg";
-
+import { useNavigate } from "react-router-dom";
 import { Wallet, Home, PlusCircle, Receipt } from "lucide-react";
 import Button from "../Button/Button";
 import { NavLink } from "react-router-dom";
@@ -14,13 +14,13 @@ import ConfirmModel from "../../ConfirmationModel/ConfirmationModel";
 
 const Navbar = () => {
   const { user } = useContext(UserContext);
+  const navigate = useNavigate();
   const [showModel, setShowModel] = useState(false);
   const { mode, toggleTheme } = useContext(ThemeContext);
   console.log(mode);
   const handleClose = () => {
     setShowModel(false);
   };
-
   const confirmLogOutBtn = (e) => {
     e.preventDefault();
     localStorage.removeItem("LoginUser");

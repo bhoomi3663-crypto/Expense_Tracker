@@ -4,11 +4,18 @@
   box-sizing: border-box;
 }
 
-.background {
-  min-height: calc(100vh - 75px);
-  transition:
-    background-color 180ms ease,
-    color 180ms ease;
+.background.light {
+  background-color: white;
+  color: black;
+  height: 100vh;
+  padding: 100px;
+}
+
+.background.dark {
+  background-color: black;
+  color: white;
+  height: 100vh;
+  padding: 100px;
 }
 
 .background-expwnseItem.light {
@@ -52,7 +59,7 @@ body {
 .recipe-container {
   max-width: 1250px;
   margin: auto;
-  padding: 40px 25px;
+  padding: 100px 25px;
 }
 
 .recipe-header {

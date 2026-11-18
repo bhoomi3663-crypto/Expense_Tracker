@@ -14,7 +14,7 @@ body {
   color: #263238;
   width: 100%;
   max-width: 450px;
-  margin: 50px auto;
+  margin: auto;
   padding: 30px;
   border-radius: 8px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);

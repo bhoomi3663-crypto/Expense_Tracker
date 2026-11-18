@@ -1,79 +1,72 @@
-.confirm-background {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.55);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  padding: 20px;
+.confirm-dialog .MuiBackdrop-root {
+  background-color: rgba(10, 20, 24, 0.58);
 }
 
-.confirm-position {
-  width: 35%;
-  height: 250px;
-  background: rgb(46, 44, 44);
-  color: white;
-  padding: 25px;
+.confirm-dialog .MuiDialog-paper {
+  width: calc(100% - 32px);
+  max-width: 420px;
+  margin: 16px;
   border-radius: 12px;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
-  display: flex;
-  flex-direction: column;
-  gap: 100px;
-  font-size: 25px;
+  background: #fff;
+  color: #263238;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.24);
 }
 
-.confirm-position-light {
-  width: 35%;
-  height: 250px;
-  background: white;
-  color: black;
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
-  display: flex;
-  flex-direction: column;
-  gap: 100px;
-  font-size: 25px;
+.confirm-dialog.dark .MuiDialog-paper {
+  background: #1b292e;
+  color: #e8efec;
 }
 
-.confirm-btn {
-  display: flex;
-  justify-content: flex-end;
-  gap: 14px;
-  margin-top: 10px;
+.confirm-dialog .MuiDialogTitle-root {
+  padding: 24px 24px 18px;
+  color: inherit;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.4;
 }
 
-.confirm-cancel-btn {
-  background-color: rgb(209, 28, 28);
-  color: white;
-  padding: 12px 24px;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
+.confirm-dialog .MuiDialogActions-root {
+  gap: 10px;
+  padding: 16px 24px 22px;
+  border-top: 1px solid #e1e7e8;
+}
+
+.confirm-dialog.dark .MuiDialogActions-root {
+  border-top-color: #3b5055;
+}
+
+.confirm-dialog .MuiButton-root {
+  min-width: 88px;
+  border-radius: 6px;
+  padding: 8px 14px;
   font-weight: 600;
-  cursor: pointer;
+  text-transform: none;
 }
 
-.confirm-cancel-btn:hover {
-  background-color: white;
-  color: red;
-  border: 1px solid red;
+.confirm-dialog .confirm-cancel {
+  color: #405158;
 }
 
-.confirm-logout-btn {
-  background-color: rgb(248, 202, 16);
-  color: white;
-  padding: 12px 24px;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
+.confirm-dialog.dark .confirm-cancel {
+  color: #e8efec;
 }
 
-.confirm-logout-btn:hover {
-  background-color: white;
-  color: gold;
-  border: 1px solid gold;
+.confirm-dialog .confirm-action {
+  background: #c62828;
+  color: #fff;
+}
+
+.confirm-dialog .confirm-action:hover {
+  background: #a61f1f;
+}
+
+@media (max-width: 480px) {
+  .confirm-dialog .MuiDialogTitle-root {
+    padding: 20px 20px 14px;
+    font-size: 18px;
+  }
+
+  .confirm-dialog .MuiDialogActions-root {
+    padding: 14px 20px 18px;
+  }
 }

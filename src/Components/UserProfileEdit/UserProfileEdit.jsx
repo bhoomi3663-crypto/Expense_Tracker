@@ -76,7 +76,12 @@ const UserProfileEdit = () => {
             />
           </div>
           <div className="profile-btn">
-            <Button className="cancel-btn" label="Cancel" />
+            <Button
+              type="button"
+              className="cancel-btn"
+              label="Cancel"
+              onClick={() => navigate("/home")}
+            />
             <Button className="update-btn" label="Update Profile" />
           </div>
         </form>
