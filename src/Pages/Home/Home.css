@@ -7,7 +7,9 @@
 .home-page {
   min-height: calc(100vh - 75px);
   padding: 40px 0;
-  transition: background-color 180ms ease, color 180ms ease;
+  transition:
+    background-color 180ms ease,
+    color 180ms ease;
 }
 
 .home-page.light {
@@ -75,7 +77,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  width: 70%;
+  width: 60%;
   padding: 12px 15px;
   border: 1px solid #d1d5db;
   border-radius: 8px;
@@ -93,7 +95,7 @@
 }
 
 .category-select {
-  width: 25%;
+  width: 18%;
   padding: 12px;
   border: 1px solid #d1d5db;
   border-radius: 8px;
@@ -103,15 +105,51 @@
   background: white;
 }
 
-.expense-container.dark .search-box,
-.expense-container.dark .category-select {
+.date-column-header {
+  display: table-cell;
+  white-space: nowrap;
+}
+
+.date-column-header > span {
+  margin-right: 8px;
+}
+
+.date-sort-button {
+  display: inline-flex;
+  width: 32px;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: #fff;
+  color: #374151;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    background-color 160ms ease,
+    color 160ms ease,
+    border-color 160ms ease;
+}
+
+.date-sort-button:hover {
+  border-color: #255ad5;
+  background: #eef3ff;
+  color: #255ad5;
+}
+
+.expense-container.dark .date-sort-button {
   border-color: #3b5055;
   background: #22343a;
   color: #e8efec;
 }
 
-.expense-container.dark .search-box input {
-  color: #e8efec;
+.expense-container.dark .date-sort-button:hover {
+  border-color: #66c3b4;
+  background: #273a3f;
+  color: #66c3b4;
 }
 
 /* Table */
@@ -279,7 +317,8 @@
   }
 
   .search-box,
-  .category-select {
+  .category-select,
+  .date-sort-button {
     width: 100%;
   }
 }

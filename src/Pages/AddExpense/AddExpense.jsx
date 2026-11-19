@@ -12,6 +12,7 @@ import {
   getUserById,
   updateUser,
 } from "../../Services/userServices";
+import { TOAST_MESSAGES } from "../../constants/appConstants";
 
 function AddExpense() {
   const [isSubmitting, setIsSubmitting] = useState(true);
@@ -21,7 +22,7 @@ function AddExpense() {
     amount: "",
     description: "",
     date: "",
-    category: "",
+    category: "Other",
   });
   const { user } = useContext(UserContext);
   const { mode } = useContext(ThemeContext);
@@ -65,7 +66,7 @@ function AddExpense() {
     if (id) {
       try {
         await updateUser(id, expenseData);
-        toast.success("Expense edited successfullly");
+        toast.success(TOAST_MESSAGES.EXPENSE_UPDATED);
       } catch {
         setError(
           "Unable to edit expense. Check that the API server is running.",
@@ -77,13 +78,13 @@ function AddExpense() {
     } else {
       try {
         await createUser(expenseData);
+        toast.success(TOAST_MESSAGES.EXPENSE_ADDED);
       } catch {
         setError(
           "Unable to load expense. Check that the API server is running.",
         );
       } finally {
         setIsSubmitting(false);
-        toast.success("Expense added successfully");
         navigate("/home");
       }
     }
@@ -181,7 +182,7 @@ function AddExpense() {
             <div className="form-group">
               <label>Category</label>
               <select
-                value={expenseData.category}
+                value={expenseData.category || Other}
                 name="category"
                 onChange={handleInputChange}
               >

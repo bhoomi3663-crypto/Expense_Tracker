@@ -9,6 +9,9 @@ import { toast } from "react-toastify";
 import { useContext } from "react";
 import ThemeContext from "../../Context/ThemeContext";
 import { getUsers, deleteUser } from "../../Services/userServices";
+import useSortDate from "../../DateSorting/useSortDate";
+import { formatText } from "../../utils/CommomServiesFunction";
+import { TOAST_MESSAGES } from "../../constants/appConstants";
 
 function Home() {
   const [expenses, setExpenses] = useState([]);
@@ -54,7 +57,7 @@ function Home() {
       setExpenses((currentExpenses) =>
         currentExpenses.filter((expense) => expense.id !== id),
       );
-      toast.success("Expense Deleted Successfully");
+      toast.success(TOAST_MESSAGES.EXPENSE_DELETED);
     } catch {
       toast.error("Unable to delete Expense.");
     } finally {
@@ -96,10 +99,12 @@ function Home() {
     const matchesCategory =
       category === "" ||
       expense.category.toLowerCase() === category.toLowerCase();
-
     return matchesDescription && matchesCategory;
   });
-  // category type function:
+
+  const { sortedExpenses, sortDate, setSortDate } =
+    useSortDate(filteredExpenses);
+
   return (
     <>
       <div className={`home-page ${mode}`}>
@@ -109,7 +114,7 @@ function Home() {
             <p>Manage and track all your expenses</p>
           </div>
 
-          {/* Search and Category */}
+          {/* Search, Category and Date Sorting */}
           <div className="expense-filters">
             <div className="search-box">
               <Search size={20} />
@@ -127,12 +132,12 @@ function Home() {
               onChange={(e) => setCategory(e.target.value)}
             >
               <option value="">All Categories</option>
-              <option>Food</option>
-              <option>Travel</option>
-              <option>Shopping</option>
-              <option>Entertainment</option>
-              <option>Health</option>
-              <option>Grocery</option>
+              <option value="Food">Food</option>
+              <option value="Travel">Travel</option>
+              <option value="Shopping">Shopping</option>
+              <option value="Entertainment">Entertainment</option>
+              <option value="Health">Health</option>
+              <option value="Grocery">Grocery</option>
             </select>
           </div>
 
@@ -143,7 +148,22 @@ function Home() {
                 <tr>
                   <th>Amount</th>
                   <th>Description</th>
-                  <th>Date</th>
+                  <th className="date-column-header">
+                    <span>Date</span>
+                    <button
+                      type="button"
+                      className="date-sort-button"
+                      onClick={() =>
+                        setSortDate(sortDate === "newest" ? "oldest" : "newest")
+                      }
+                      aria-label={`Sort date ${sortDate === "newest" ? "oldest" : "newest"} first`}
+                      title={
+                        sortDate === "newest" ? "Newest first" : "Oldest first"
+                      }
+                    >
+                      {sortDate === "newest" ? "↓" : "↑"}
+                    </button>
+                  </th>
                   <th>Category</th>
                   <th>Delete</th>
                   <th>Edit</th>
@@ -152,10 +172,10 @@ function Home() {
               </thead>
 
               <tbody>
-                {filteredExpenses.map((expense) => (
+                {sortedExpenses.map((expense) => (
                   <tr key={expense.id}>
                     <td>{expense.amount}</td>
-                    <td>{expense.description}</td>
+                    <td>{formatText(expense.description)}</td>
                     <td>{expense.date}</td>
                     <td>
                       <span className="category food">{expense.category}</span>

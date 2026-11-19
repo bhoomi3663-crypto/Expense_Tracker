@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { UserContext } from "../../Context/UserContext";
 import ThemeContext from "../../Context/ThemeContext";
+import { TOAST_MESSAGES } from "../../constants/appConstants";
 
 const UserProfileEdit = () => {
   const { user, updateUser } = useContext(UserContext);
@@ -27,7 +28,9 @@ const UserProfileEdit = () => {
     e.preventDefault();
     updateUser(editloginData);
     navigate("/home");
-    toast.success("profile edited Succesfully");
+    toast.success(
+      `Hello, ${editloginData.uname}! ${TOAST_MESSAGES.USERPROFILE_EDITED}`,
+    );
   };
 
   return (

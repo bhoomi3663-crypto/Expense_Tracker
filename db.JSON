@@ -43,11 +43,18 @@
       "id": "IWJjyI6JONI"
     },
     {
-      "amount": "200",
-      "description": "pastry",
-      "date": "2026-11-11",
-      "category": "Food",
-      "id": "EU8_hvrb0ho"
+      "amount": "098",
+      "description": "EDFDCFYGUH",
+      "date": "2026-11-04",
+      "category": "Shopping",
+      "id": "k1dY8Y_wTS8"
+    },
+    {
+      "amount": "45678",
+      "description": "vbnm,.",
+      "date": "2026-11-03",
+      "category": "Other",
+      "id": "EUjTf3IUgls"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
