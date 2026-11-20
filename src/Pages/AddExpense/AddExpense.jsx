@@ -12,12 +12,12 @@ import {
   getUserById,
   updateUser,
 } from "../../Services/userServices";
-import { TOAST_MESSAGES } from "../../constants/appConstants";
+import { CONSTANT } from "../../constants/appConstants";
+import DatePicker from "../../DatePicker/DatePicker";
 
 function AddExpense() {
   const [isSubmitting, setIsSubmitting] = useState(true);
   const [error, setError] = useState("");
-  const [date, setDate] = useState("");
   const [expenseData, setExpenseData] = useState({
     amount: "",
     description: "",
@@ -66,7 +66,7 @@ function AddExpense() {
     if (id) {
       try {
         await updateUser(id, expenseData);
-        toast.success(TOAST_MESSAGES.EXPENSE_UPDATED);
+        toast.success(CONSTANT.TOAST_MESSAGES.EXPENSE_UPDATED);
       } catch {
         setError(
           "Unable to edit expense. Check that the API server is running.",
@@ -78,7 +78,7 @@ function AddExpense() {
     } else {
       try {
         await createUser(expenseData);
-        toast.success(TOAST_MESSAGES.EXPENSE_ADDED);
+        toast.success(CONSTANT.TOAST_MESSAGES.EXPENSE_ADDED);
       } catch {
         setError(
           "Unable to load expense. Check that the API server is running.",
@@ -127,12 +127,6 @@ function AddExpense() {
 
   // Date validation(users not able to add future date):
   const today = new Date().toISOString().split("T")[0];
-  const handleformatDate = (e) => {
-    setExpenseData((previous) => ({
-      ...previous,
-      date: e.target.value,
-    }));
-  };
   return (
     <>
       <div className={`background ${mode}`}>
@@ -168,14 +162,16 @@ function AddExpense() {
 
             <div className="form-group">
               <label>Date</label>
-              <input
-                type="date"
-                name="date"
-                id="date"
-                required
+              <DatePicker
+                label="Enter Date"
                 value={expenseData.date}
-                max={today}
-                onChange={handleformatDate}
+                maxDate={today}
+                onChange={(value) =>
+                  setExpenseData((currentData) => ({
+                    ...currentData,
+                    date: value,
+                  }))
+                }
               />
             </div>
 

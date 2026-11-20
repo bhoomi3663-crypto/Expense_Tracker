@@ -10,8 +10,10 @@ import { useContext } from "react";
 import ThemeContext from "../../Context/ThemeContext";
 import { getUsers, deleteUser } from "../../Services/userServices";
 import useSortDate from "../../DateSorting/useSortDate";
-import { formatText } from "../../utils/CommomServiesFunction";
-import { TOAST_MESSAGES } from "../../constants/appConstants";
+import { COMMON_SERVICE } from "../../utils/CommomServiesFunction";
+import { CONSTANT } from "../../constants/appConstants";
+import DatePicker from "../../DatePicker/DatePicker";
+import CommonSelect from "../../Components/CommonSelect/CommonSelect";
 
 function Home() {
   const [expenses, setExpenses] = useState([]);
@@ -23,6 +25,7 @@ function Home() {
   const [category, setCategory] = useState("");
   const navigate = useNavigate();
   const { mode } = useContext(ThemeContext);
+  const [selectedDate, setSelectedDate] = useState(null);
 
   // fatch data:
   // useEffect(() => {
@@ -57,7 +60,7 @@ function Home() {
       setExpenses((currentExpenses) =>
         currentExpenses.filter((expense) => expense.id !== id),
       );
-      toast.success(TOAST_MESSAGES.EXPENSE_DELETED);
+      toast.success(CONSTANT.TOAST_MESSAGES.EXPENSE_DELETED);
     } catch {
       toast.error("Unable to delete Expense.");
     } finally {
@@ -99,7 +102,10 @@ function Home() {
     const matchesCategory =
       category === "" ||
       expense.category.toLowerCase() === category.toLowerCase();
-    return matchesDescription && matchesCategory;
+
+    const matchesDate = !selectedDate || expense.date === selectedDate;
+
+    return matchesDescription && matchesCategory && matchesDate;
   });
 
   const { sortedExpenses, sortDate, setSortDate } =
@@ -125,20 +131,25 @@ function Home() {
                 onChange={(e) => setSearch(e.target.value)}
               />
             </div>
-
-            <select
-              className="category-select"
+            <DatePicker
+              label="Filter by Date"
+              value={selectedDate}
+              onChange={setSelectedDate}
+            />
+            <CommonSelect
+              label="Category"
               value={category}
-              onChange={(e) => setCategory(e.target.value)}
-            >
-              <option value="">All Categories</option>
-              <option value="Food">Food</option>
-              <option value="Travel">Travel</option>
-              <option value="Shopping">Shopping</option>
-              <option value="Entertainment">Entertainment</option>
-              <option value="Health">Health</option>
-              <option value="Grocery">Grocery</option>
-            </select>
+              onChange={setCategory}
+              options={[
+                { label: "All Categories", value: "" },
+                { label: "Food", value: "Food" },
+                { label: "Travel", value: "Travel" },
+                { label: "Shopping", value: "Shopping" },
+                { label: "Entertainment", value: "Entertainment" },
+                { label: "Health", value: "Health" },
+                { label: "Grocery", value: "Grocery" },
+              ]}
+            />
           </div>
 
           {/* Expense Table */}
@@ -175,7 +186,7 @@ function Home() {
                 {sortedExpenses.map((expense) => (
                   <tr key={expense.id}>
                     <td>{expense.amount}</td>
-                    <td>{formatText(expense.description)}</td>
+                    <td>{COMMON_SERVICE.formatText(expense.description)}</td>
                     <td>{expense.date}</td>
                     <td>
                       <span className="category food">{expense.category}</span>

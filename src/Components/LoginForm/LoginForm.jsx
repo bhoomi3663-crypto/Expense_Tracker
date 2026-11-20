@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "./LoginForm.css";
 import { toast } from "react-toastify";
 import { UserContext } from "../../Context/UserContext";
-import { TOAST_MESSAGES } from "../../constants/appConstants";
+import { CONSTANT } from "../../constants/appConstants";
 
 function LoginForm() {
   const [error, setError] = useState();
@@ -29,7 +29,9 @@ function LoginForm() {
       return;
     }
     updateUser(loginData);
-    toast.success(`${TOAST_MESSAGES.LOGIN_SUCCESS} ${loginData.uname}!`);
+    toast.success(
+      `${CONSTANT.TOAST_MESSAGES.LOGIN_SUCCESS} ${loginData.uname}!`,
+    );
     navigate("/home");
   };
 

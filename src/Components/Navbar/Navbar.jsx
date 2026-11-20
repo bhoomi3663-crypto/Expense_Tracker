@@ -50,6 +50,10 @@ const Navbar = () => {
             <Receipt size={20} />
             Expense Items
           </NavLink>
+          <NavLink to="/myBarChart" className="nav-link">
+            <Receipt size={20} />
+            Bar Chart
+          </NavLink>
         </div>
         <div className="theme-profile-btn">
           <div className="cloud-icon" onClick={toggleTheme}>

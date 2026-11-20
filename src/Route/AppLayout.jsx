@@ -5,6 +5,7 @@ import { Layout } from "./Layout";
 import Home from "../Pages/Home/Home";
 import AddExpense from "../Pages/AddExpense/AddExpense";
 import ExpenseItems from "../Pages/ExpenseItems/ExpenseItems";
+import MyBarChart from "../Pages/BarChart/BarChart";
 import LoginForm from "../Components/LoginForm/LoginForm";
 import ReadMoreCard from "../Pages/ReadMoreCard/ReadMoreCard";
 import UserProfileEdit from "../Components/UserProfileEdit/UserProfileEdit";
@@ -41,6 +42,10 @@ export const route = createBrowserRouter([
       {
         path: "/userProfileEdit",
         element: <UserProfileEdit />,
+      },
+      {
+        path: "/myBarChart",
+        element: <MyBarChart />,
       },
       // {
       //   path: "/useCallback",

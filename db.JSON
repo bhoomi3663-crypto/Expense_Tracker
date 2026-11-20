@@ -38,23 +38,16 @@
     {
       "amount": "5000",
       "description": "handloom",
-      "date": "2026-10-21",
+      "date": "2026-10-20",
       "category": "Shopping",
       "id": "IWJjyI6JONI"
     },
     {
-      "amount": "098",
-      "description": "EDFDCFYGUH",
-      "date": "2026-11-04",
+      "amount": "34567",
+      "description": "xcvbnm,",
+      "date": "2026-11-18",
       "category": "Shopping",
-      "id": "k1dY8Y_wTS8"
-    },
-    {
-      "amount": "45678",
-      "description": "vbnm,.",
-      "date": "2026-11-03",
-      "category": "Other",
-      "id": "EUjTf3IUgls"
+      "id": "oMYnsJA-8Ak"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

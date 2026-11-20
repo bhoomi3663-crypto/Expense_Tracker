@@ -1,5 +1,7 @@
-export const formatText = (text) => {
-  if (!text) return "";
+export const COMMON_SERVICE = {
+  formatText(text) {
+    if (!text) return "";
 
-  return text.toLowerCase().replace(/\b\w/g, (char) => char.toUpperCase());
+    return text.toLowerCase().replace(/\b\w/g, (char) => char.toUpperCase());
+  },
 };
